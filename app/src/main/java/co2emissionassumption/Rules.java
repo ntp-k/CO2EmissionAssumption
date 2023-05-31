@@ -3,9 +3,9 @@ package co2emissionassumption;
 public class Rules {
     private int start;
     private int end;
-    private int percent;
+    private float percent;
 
-    public Rules(int start, int end, int percent) {
+    public Rules(int start, int end, float percent) {
         this.start = start;
         this.end = end;
         this.percent = percent;
@@ -27,11 +27,11 @@ public class Rules {
         this.end = end;
     }
 
-    public int getPercent() {
+    public float getPercent() {
         return percent;
     }
 
-    public void setPercent(int percent) {
+    public void setPercent(float percent) {
         this.percent = percent;
     }
 }
