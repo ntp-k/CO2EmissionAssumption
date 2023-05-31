@@ -1,3 +1,4 @@
+import os
 import json
 
 
@@ -13,8 +14,8 @@ def read_json_to_dict(path: str = '') -> list:
 
 
 if __name__ == "__main__":
-    base_values_path = r'testcase\testcase_1\emission_values.json'
-    rules_path = r'testcase\testcase_1\rules.json'
+    base_values_path = os.path.join('testcase', 'testcase_1', 'emission_values.json')
+    rules_path = os.path.join('testcase', 'testcase_1', 'rules.json')
 
     base_values = read_json_to_dict(base_values_path)
     rules = read_json_to_dict(rules_path)
@@ -47,7 +48,7 @@ if __name__ == "__main__":
         else:
             anticipate_vaule = base_values[vi] * rules[ri]['percent']
 
-        anticipate_vaules[vi] = anticipate_vaule
+        anticipate_vaules[vi] = int(anticipate_vaule)
         vi += 1
 
 print(anticipate_vaules)
