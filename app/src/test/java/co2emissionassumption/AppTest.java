@@ -3,12 +3,38 @@
  */
 package co2emissionassumption;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.io.File;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    // @Test void appHasAGreeting() {
-    //     App classUnderTest = new App();
-    //     assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-    // }
+    @Test
+    public void testArrayEquality() {
+        App classUnderTest = new App();
+        ResourceFileHandler fileHandler = new ResourceFileHandler();
+
+        String separator = File.separator;
+        String testcaseFolder = "testcase1";
+        String rulesFilePath = testcaseFolder + separator + "rules.json";
+        String baseValuesFilePath = testcaseFolder + separator + "baseValues.json";
+        String anticipatedValuesFilePath = testcaseFolder + separator + "expectedAnticipatedValues.json";
+
+        // get rules
+        String rulesString = fileHandler.readLineFromResource(rulesFilePath);
+        ArrayList<Rules> rules = classUnderTest.parseRulesArray(rulesString);
+
+        // get base vaules
+        String baseVaulesString = fileHandler.readLineFromResource(baseValuesFilePath);
+        int[] baseValues = classUnderTest.parseIntArray(baseVaulesString);
+
+        // calculate actual anticipated vaules
+        int[] actualAnticipateValues = classUnderTest.calculate(baseValues, rules);
+
+        // get expected anticipated vaules
+        String expectedAnticipateValuesString = fileHandler.readLineFromResource(anticipatedValuesFilePath);
+        int[] expectedAnticipateValues = classUnderTest.parseIntArray(expectedAnticipateValuesString);
+        assertArrayEquals(expectedAnticipateValues, actualAnticipateValues);
+    }
 }

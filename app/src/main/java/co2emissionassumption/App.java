@@ -13,7 +13,7 @@ import co2emissionassumption.Rules;
 
 public class App {
 
-  private static int[] parseIntArray(String input) {
+  public static int[] parseIntArray(String input) {
     String cleanInput = input.replace("\n", "").replace("[", "").replace("]", "");
 
     // Split into individual elements
@@ -28,7 +28,7 @@ public class App {
     return intArray;
   }
 
-  private static ArrayList<Rules> parseRulesArray(String jsonString) {
+  public static ArrayList<Rules> parseRulesArray(String jsonString) {
     ArrayList<Rules> rules = new ArrayList<>();
     try {
       JSONParser parser = new JSONParser();
@@ -56,7 +56,7 @@ public class App {
     return rules;
   }
 
-  private static int[] calculate(int[] baseValues, ArrayList<Rules> rules) {
+  public static int[] calculate(int[] baseValues, ArrayList<Rules> rules) {
     int[] anticipateValues = new int[baseValues.length];
     int cumulative = 0;
     int vi = 0; // value index
