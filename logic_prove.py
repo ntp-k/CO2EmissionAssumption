@@ -14,8 +14,8 @@ def read_json_to_dict(path: str = '') -> list:
 
 
 if __name__ == "__main__":
-    base_values_path = os.path.join('testcase', 'testcase_1', 'emission_values.json')
-    rules_path = os.path.join('testcase', 'testcase_1', 'rules.json')
+    base_values_path = os.path.join('app', 'src' , 'test' , 'resources', 'testcase1', 'baseValues.json')
+    rules_path = os.path.join('app', 'src' , 'test' , 'resources', 'testcase1', 'rules.json')
 
     base_values = read_json_to_dict(base_values_path)
     rules = read_json_to_dict(rules_path)
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         anticipate_vaule = 0
         cumulative += base_values[vi]
 
-        if 'end' in rules[ri]:
+        if rules[ri]['end'] != -1:
             if cumulative < rules[ri]['end']:
                 anticipate_vaule = base_values[vi] * rules[ri]['percent']
 
